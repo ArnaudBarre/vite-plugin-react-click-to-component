@@ -1,0 +1,19 @@
+name: Publish to npm
+on:
+  push:
+    branches:
+      - main
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    if: ${{ contains(github.event.head_commit.message, '[publish]') }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: xhyrom/setup-bun@v0.1.7
+      - run: rm -rf ~/.bun/install/cache
+      - run: bun install
+      - run: bun ci
+      - uses: ArnaudBarre/npm-publish@v1.1
+        with:
+          working-directory: dist
+          npm-token: ${{ secrets.NPM_TOKEN }}

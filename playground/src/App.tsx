@@ -7,6 +7,8 @@ export const App = () => {
 
   return (
     <div className="App">
+      <div style={{ position: "fixed", right: 40, top: 40 }}>Top right</div>
+      <div className="full-height">Full height</div>
       <div>
         <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
           <img src="/vite.svg" className="logo" alt="Vite logo" />

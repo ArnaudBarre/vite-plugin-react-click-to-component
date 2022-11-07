@@ -72,7 +72,7 @@ window.addEventListener("mousemove", (event) => {
     tooltipElement.style.left = `${rect.left}px`;
     tooltipElement.style.right = "";
   } else {
-    tooltipElement.style.right = `${rect.right}px`;
+    tooltipElement.style.right = `${window.innerWidth - rect.right}px`;
     tooltipElement.style.left = "";
   }
   if (!hasTooltip) {

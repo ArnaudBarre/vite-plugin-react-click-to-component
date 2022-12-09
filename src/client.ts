@@ -50,12 +50,12 @@ window.addEventListener("mousemove", (event) => {
   if (event.target === currentTarget || event.target === tooltipElement) return;
   clearTarget();
   currentTarget = event.target;
-  event.target.dataset.clickToComponentTarget = "true";
   const path = getPathForElement(event.target);
   if (!path) {
     removeTooltip();
     return;
   }
+  event.target.dataset.clickToComponentTarget = "true";
   tooltipElement.textContent = path;
   const rect = event.target.getBoundingClientRect();
   if (rect.bottom + 40 < window.innerHeight) {
@@ -89,7 +89,7 @@ const cleanUp = () => {
 
 const clearTarget = () => {
   const current = document.querySelector<HTMLElement>(
-    "[data-click-to-component-target]"
+    "[data-click-to-component-target]",
   );
   if (!current) return;
   delete current.dataset.clickToComponentTarget;
@@ -111,13 +111,13 @@ window.addEventListener(
       fetch(`/__open-in-editor?file=${encodeURIComponent(path)}`);
     }
   },
-  { capture: true }
+  { capture: true },
 );
 
 const getPathForElement = (element: Element) => {
   const instance = getReactInstanceForElement(element);
-  if (!instance || !instance._debugSource) {
-    console.warn("Couldn't find a React instance for the element", element);
+  if (!instance?._debugSource) {
+    console.debug("Couldn't find a React instance for the element", element);
     return;
   }
   const { columnNumber = 1, fileName, lineNumber = 1 } = instance._debugSource;

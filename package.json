@@ -1,8 +1,9 @@
 {
   "name": "vite-plugin-react-click-to-component",
-  "version": "1.0.1",
+  "version": "1.0.3",
   "license": "MIT",
   "scripts": {
+    "postinstall": "cd playground && bun i",
     "dev": "scripts/bundle.ts --dev",
     "build": "scripts/bundle.ts",
     "tsc": "tsc",
@@ -12,17 +13,20 @@
     "prettier-ci": "prettier --ignore-path=.gitignore --check '**/*.{ts,tsx,html,css,json,md,yml}'",
     "ci": "tsc && bun lint-ci && bun prettier-ci && bun run build"
   },
+  "prettier": {
+    "trailingComma": "all"
+  },
   "peerDependencies": {
     "react": ">=16",
-    "vite": "^2 || ^3"
+    "vite": "^2 || ^3 || ^4"
   },
   "devDependencies": {
-    "@arnaud-barre/eslint-config": "^1.0.13",
-    "@nabla/tnode": "^0.7.0",
-    "@types/node": "^18.11.4",
-    "eslint": "^8.26.0",
-    "prettier": "^2.7.1",
-    "typescript": "^4.8.4",
-    "vite": "^3.1.8"
+    "@arnaud-barre/eslint-config": "^1.0.17",
+    "@nabla/tnode": "^0.8.0",
+    "@types/node": "^18.11.12",
+    "eslint": "^8.29.0",
+    "prettier": "^2.8.1",
+    "typescript": "^4.9.4",
+    "vite": "^4.0.0"
   }
 }

@@ -37,7 +37,7 @@ Promise.all([
     "dist/index.d.ts",
     `import { PluginOption } from "vite";
 export declare const reactClickToComponent: () => PluginOption;
-`
+`,
   );
 
   writeFileSync(
@@ -56,7 +56,7 @@ export declare const reactClickToComponent: () => PluginOption;
         peerDependencies: packageJSON.peerDependencies,
       },
       null,
-      2
-    )
+      2,
+    ),
   );
 });

@@ -14,10 +14,10 @@ In your Vite config:
 
 ```ts
 import { defineConfig } from "vite";
-import { swcReactRefresh } from "vite-plugin-swc-react-refresh"; // or @vitejs/plugin-react
+import react from "@vitejs/plugin-react-swc"; // or @vitejs/plugin-react
 import { reactClickToComponent } from "vite-plugin-react-click-to-component";
 
 export default defineConfig({
-  plugins: [swcReactRefresh(), reactClickToComponent()],
+  plugins: [react(), reactClickToComponent()],
 });
 ```

@@ -2,14 +2,15 @@
   "name": "playground",
   "private": true,
   "scripts": {
-    "dev": "vite"
+    "dev": "vite",
+    "lint-ci": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
   },
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0"
   },
   "devDependencies": {
-    "@types/react-dom": "^18.0.9",
-    "@vitejs/plugin-react-swc": "^3.0.0"
+    "@types/react-dom": "^18.0.11",
+    "@vitejs/plugin-react-swc": "^3.2.0"
   }
 }

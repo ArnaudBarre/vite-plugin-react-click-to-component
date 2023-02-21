@@ -46,13 +46,19 @@ export declare const reactClickToComponent: () => PluginOption;
       {
         name: packageJSON.name,
         description:
-          "Option+Click React components in your browser to open the source in your editor",
+          "Option+Right Click in your browser to open the source in your editor",
         version: packageJSON.version,
         author: "Arnaud Barré (https://github.com/ArnaudBarre)",
         license: packageJSON.license,
         repository: "github:ArnaudBarre/vite-plugin-react-click-to-component",
         main: "index.js",
-        keywords: ["vite", "vite-plugin", "react", "click-to-component"],
+        keywords: [
+          "vite",
+          "vite-plugin",
+          "react",
+          "inspector",
+          "click-to-component",
+        ],
         peerDependencies: packageJSON.peerDependencies,
       },
       null,

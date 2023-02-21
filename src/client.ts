@@ -7,125 +7,175 @@ style.setAttribute("data-vite-dev-id", "react-click-to-component");
 style.innerHTML = `[data-click-to-component-target] {
   outline: auto 1px !important;
 }
-
-#click-to-component-tooltip {
+#click-to-component-menu {
   position: fixed !important;
   z-index: 1000 !important;
   margin-top: 8px !important;
   margin-bottom: 8px !important;
   background: #222 !important;
   color: white !important;
-  padding: 4px !important;
-  border-radius: 4px !important;
+  padding: 8px !important;
+  border-radius: 6px !important;
   font-size: 14px !important;
   line-height: 1.5 !important;
-}`;
+  display: flex !important;
+  gap: 2px !important;
+  overflow: auto !important;
+}
+.click-to-component-menu-item {
+  padding: 4px !important;
+  border-radius: 4px !important;
+  cursor: pointer !important;
+  display: flex !important;
+  justify-content: space-between !important;
+  gap: 8px !important;
+}
+.click-to-component-menu-item:hover {
+  background: #333 !important;
+}
+`;
 document.head.appendChild(style);
 
-let altKey = false;
+const root = "__ROOT__";
 let currentTarget: HTMLElement | undefined;
-let hasTooltip = false;
-const tooltipElement = document.createElement("div");
-tooltipElement.setAttribute("id", "click-to-component-tooltip");
-
-window.addEventListener("keydown", (event) => {
-  if (event.altKey) altKey = true;
-});
+let hasMenu = false;
+const menuElement = document.createElement("div");
+menuElement.setAttribute("id", "click-to-component-menu");
 
 window.addEventListener("keyup", (event) => {
-  if (altKey && !event.altKey) cleanUp();
+  if (!event.altKey && (hasMenu || currentTarget)) cleanUp();
 });
 
 window.addEventListener("mousemove", (event) => {
-  if (!altKey) return;
   if (!event.altKey) {
     cleanUp();
     return;
   }
+  if (hasMenu) return;
   if (!(event.target instanceof HTMLElement)) {
-    clearTarget();
-    removeTooltip();
+    clearOverlay();
     return;
   }
-  if (event.target === currentTarget || event.target === tooltipElement) return;
-  clearTarget();
+  if (event.target === currentTarget) return;
+  clearOverlay();
   currentTarget = event.target;
-  const path = getPathForElement(event.target);
-  if (!path) {
-    removeTooltip();
-    return;
-  }
   event.target.dataset.clickToComponentTarget = "true";
-  tooltipElement.textContent = path;
-  const rect = event.target.getBoundingClientRect();
-  if (rect.bottom + 40 < window.innerHeight) {
-    tooltipElement.style.top = `${rect.bottom}px`;
-    tooltipElement.style.bottom = "";
-  } else if (rect.top > 40) {
-    tooltipElement.style.bottom = `${window.innerHeight - rect.top}px`;
-    tooltipElement.style.top = "";
+});
+
+window.addEventListener("contextmenu", (event) => {
+  if (!event.altKey) return;
+  const target = event.target;
+  if (!(target instanceof HTMLElement)) return;
+  event.preventDefault();
+  const layers = getLayersForElement(target);
+  if (layers.length === 0) return;
+  const rect = target.getBoundingClientRect();
+  if (rect.bottom < window.innerHeight / 2) {
+    menuElement.style.top = `${rect.bottom}px`;
+    menuElement.style.bottom = "";
+    menuElement.style.maxHeight = `${window.innerHeight - rect.bottom - 16}px`;
+  } else if (rect.top > window.innerHeight / 2) {
+    menuElement.style.bottom = `${window.innerHeight - rect.top}px`;
+    menuElement.style.top = "";
+    menuElement.style.maxHeight = `${rect.top - 16}px`;
   } else {
-    tooltipElement.style.bottom = `${window.innerHeight / 2 - 22}px`;
-    tooltipElement.style.top = "";
+    menuElement.style.bottom = `${window.innerHeight - rect.bottom}px`;
+    menuElement.style.top = "";
+    menuElement.style.maxHeight = `${rect.bottom - 16}px`;
   }
   if (rect.left < window.innerWidth / 2) {
-    tooltipElement.style.left = `${rect.left}px`;
-    tooltipElement.style.right = "";
+    menuElement.style.left = `${rect.left}px`;
+    menuElement.style.right = "";
   } else {
-    tooltipElement.style.right = `${window.innerWidth - rect.right}px`;
-    tooltipElement.style.left = "";
+    menuElement.style.right = `${window.innerWidth - rect.right}px`;
+    menuElement.style.left = "";
   }
-  if (!hasTooltip) {
-    document.body.appendChild(tooltipElement);
-    hasTooltip = true;
+  while (menuElement.firstChild) {
+    menuElement.removeChild(menuElement.firstChild);
+  }
+  menuElement.style.flexDirection = menuElement.style.top
+    ? "column"
+    : "column-reverse";
+  for (const layer of layers) {
+    const item = document.createElement("div");
+    item.className = "click-to-component-menu-item";
+    const spanL = document.createElement("span");
+    spanL.textContent = `<${layer.name} />`;
+    item.appendChild(spanL);
+    const spanR = document.createElement("span");
+    spanR.textContent = layer.path.replace(`${root}/`, "");
+    item.appendChild(spanR);
+    item.addEventListener("click", () => {
+      fetch(`/__open-in-editor?file=${encodeURIComponent(layer.path)}`);
+      cleanUp();
+    });
+    menuElement.appendChild(item);
+  }
+  if (!hasMenu) {
+    document.body.appendChild(menuElement);
+    hasMenu = true;
   }
 });
 
 const cleanUp = () => {
-  clearTarget();
-  removeTooltip();
-  altKey = false;
+  clearOverlay();
+  removeMenu();
 };
 
-const clearTarget = () => {
+const clearOverlay = () => {
+  if (!currentTarget) return;
   const current = document.querySelector<HTMLElement>(
     "[data-click-to-component-target]",
   );
-  if (!current) return;
-  delete current.dataset.clickToComponentTarget;
+  if (current) delete current.dataset.clickToComponentTarget;
+  currentTarget = undefined;
 };
 
-const removeTooltip = () => {
-  if (!hasTooltip) return;
-  document.body.removeChild(tooltipElement);
-  hasTooltip = false;
+const removeMenu = () => {
+  if (!hasMenu) return;
+  document.body.removeChild(menuElement);
+  hasMenu = false;
 };
 
-window.addEventListener(
-  "click",
-  (event) => {
-    if (event.altKey && event.target instanceof HTMLElement) {
-      event.preventDefault();
-      const path = getPathForElement(event.target);
-      if (!path) return;
-      fetch(`/__open-in-editor?file=${encodeURIComponent(path)}`);
+const getLayersForElement = (element: Element) => {
+  let instance = getReactInstanceForElement(element);
+
+  const layers: { name: string; path: string }[] = [];
+  while (instance) {
+    const path = getPath(instance);
+    if (path) {
+      const name =
+        typeof instance.type === "string"
+          ? instance.type
+          : instance.type.displayName ?? instance.type.name;
+      layers.push({ name, path });
     }
-  },
-  { capture: true },
-);
+    instance = instance._debugOwner;
+  }
 
-const getPathForElement = (element: Element) => {
-  const instance = getReactInstanceForElement(element);
-  if (!instance?._debugSource) {
-    console.debug("Couldn't find a React instance for the element", element);
+  return layers;
+};
+
+const getPath = (fiber: Fiber) => {
+  if (!fiber._debugSource) {
+    console.debug("Couldn't find a React instance for the element", fiber);
     return;
   }
-  const { columnNumber = 1, fileName, lineNumber = 1 } = instance._debugSource;
-  // eslint-disable-next-line @typescript-eslint/restrict-template-expressions
+  const { columnNumber = 1, fileName, lineNumber = 1 } = fiber._debugSource;
   return `${fileName}:${lineNumber}:${columnNumber}`;
 };
 
-const getReactInstanceForElement = (element: Element) => {
+type Fiber = {
+  _debugSource?: {
+    columnNumber?: number;
+    fileName: string;
+    lineNumber?: number;
+  };
+  _debugOwner?: Fiber;
+  type: string | { displayName?: string; name: string };
+};
+
+const getReactInstanceForElement = (element: Element): Fiber | undefined => {
   // Prefer React DevTools, which has direct access to `react-dom` for mapping `element` <=> Fiber
   if ("__REACT_DEVTOOLS_GLOBAL_HOOK__" in window) {
     const { renderers } = (window as any).__REACT_DEVTOOLS_GLOBAL_HOOK__;

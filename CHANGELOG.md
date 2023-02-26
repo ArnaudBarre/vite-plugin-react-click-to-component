@@ -3,7 +3,7 @@
 ## 2.0.0
 
 Context menu on option+right click to see all the intermediate components and jump to the right place!
-Direct click is remove for two reasons:
+Direct click is removed for two reasons:
 
 - It doesn't play well with buttons and links
 - In large apps, you often end up on the generic component instead of going inside the usage of it

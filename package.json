@@ -18,7 +18,7 @@
   },
   "peerDependencies": {
     "react": ">=16",
-    "vite": "^2 || ^3 || ^4"
+    "vite": "^2 || ^3 || ^4 || ^5"
   },
   "devDependencies": {
     "@arnaud-barre/eslint-config": "^1.0.19",

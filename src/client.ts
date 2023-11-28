@@ -59,7 +59,7 @@ window.addEventListener("mousemove", (event) => {
   if (event.target === currentTarget) return;
   clearOverlay();
   currentTarget = event.target;
-  event.target.dataset.clickToComponentTarget = "true";
+  event.target.dataset["clickToComponentTarget"] = "true";
 });
 
 window.addEventListener("contextmenu", (event) => {
@@ -106,7 +106,7 @@ window.addEventListener("contextmenu", (event) => {
     spanR.textContent = layer.path.replace(`${root}/`, "");
     item.appendChild(spanR);
     item.addEventListener("click", () => {
-      fetch(`/__open-in-editor?file=${encodeURIComponent(layer.path)}`);
+      void fetch(`/__open-in-editor?file=${encodeURIComponent(layer.path)}`);
       cleanUp();
     });
     menuElement.appendChild(item);
@@ -127,7 +127,8 @@ const clearOverlay = () => {
   const current = document.querySelector<HTMLElement>(
     "[data-click-to-component-target]",
   );
-  if (current) delete current.dataset.clickToComponentTarget;
+  // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
+  if (current) delete current.dataset["clickToComponentTarget"];
   currentTarget = undefined;
 };
 

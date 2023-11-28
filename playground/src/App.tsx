@@ -1,5 +1,5 @@
 import reactLogo from "./react.svg";
-import { Button } from "./Button";
+import { Button } from "./Button.tsx";
 import "./App.css";
 
 export const App = () => (

@@ -106,7 +106,11 @@ window.addEventListener("contextmenu", (event) => {
     spanR.textContent = layer.path.replace(`${root}/`, "");
     item.appendChild(spanR);
     item.addEventListener("click", () => {
-      void fetch(`/__open-in-editor?file=${encodeURIComponent(layer.path)}`);
+      const url = getUrl({
+        editor: "vscode",
+        pathToSource: layer.path,
+      });
+      window.location.assign(url);
       cleanUp();
     });
     menuElement.appendChild(item);
@@ -200,3 +204,13 @@ const getReactInstanceForElement = (element: Element): Fiber | undefined => {
     if (key.startsWith("__reactFiber")) return (element as any)[key];
   }
 };
+
+function getUrl({
+  editor,
+  pathToSource,
+}: {
+  editor: string;
+  pathToSource: string;
+}) {
+  return `${editor}://file${pathToSource}`;
+}

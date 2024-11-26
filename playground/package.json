@@ -3,15 +3,16 @@
   "type": "module",
   "private": true,
   "scripts": {
+    "postinstall": "rm -rf node_modules/vite",
     "dev": "vite",
-    "lint-ci": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0"
+    "lint-ci": "eslint --max-warnings 0"
   },
   "dependencies": {
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
-    "@types/react-dom": "^18.2.17",
-    "@vitejs/plugin-react-swc": "^3.5.0"
+    "@types/react-dom": "^18.3.1",
+    "@vitejs/plugin-react-swc": "^3.7.2"
   }
 }

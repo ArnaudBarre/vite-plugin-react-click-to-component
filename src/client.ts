@@ -127,7 +127,6 @@ const clearOverlay = () => {
   const current = document.querySelector<HTMLElement>(
     "[data-click-to-component-target]",
   );
-  // eslint-disable-next-line @typescript-eslint/no-dynamic-delete
   if (current) delete current.dataset["clickToComponentTarget"];
   currentTarget = undefined;
 };

@@ -10,7 +10,6 @@
     /* Bundler mode */
     "moduleResolution": "bundler",
     "allowImportingTsExtensions": true,
-    "resolveJsonModule": true,
     "verbatimModuleSyntax": true,
     "noEmit": true,
 
@@ -21,6 +20,7 @@
     "noUnusedParameters": true,
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": true,
+    "noUncheckedSideEffectImports": true,
     "noPropertyAccessFromIndexSignature": true
   }
 }

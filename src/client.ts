@@ -157,20 +157,23 @@ const getLayersForElement = (element: Element) => {
 };
 
 const getPath = (fiber: Fiber) => {
-  if (!fiber._debugSource) {
+  const source = fiber._debugSource ?? fiber._debugInfo;
+  if (!source) {
     console.debug("Couldn't find a React instance for the element", fiber);
     return;
   }
-  const { columnNumber = 1, fileName, lineNumber = 1 } = fiber._debugSource;
+  const { columnNumber = 1, fileName, lineNumber = 1 } = source;
   return `${fileName}:${lineNumber}:${columnNumber}`;
 };
 
+type Source = {
+  columnNumber?: number;
+  fileName: string;
+  lineNumber?: number;
+};
 type Fiber = {
-  _debugSource?: {
-    columnNumber?: number;
-    fileName: string;
-    lineNumber?: number;
-  };
+  _debugSource?: Source;
+  _debugInfo?: Source; // Injected by React jsxDev patch for React 19
   _debugOwner?: Fiber;
   type: string | { displayName?: string; name: string };
 };

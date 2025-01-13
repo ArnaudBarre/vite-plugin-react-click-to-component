@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-react-click-to-component",
   "type": "module",
-  "version": "3.0.1",
+  "version": "3.1.0",
   "license": "MIT",
   "scripts": {
     "postinstall": "cd playground && bun i",
@@ -18,7 +18,7 @@
     "trailingComma": "all"
   },
   "peerDependencies": {
-    "react": "^18.3.1",
+    "react": "^18.3.1 || ^19.0.0",
     "vite": "^4 || ^5 || ^6"
   },
   "devDependencies": {

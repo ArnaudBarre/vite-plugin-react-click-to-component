@@ -24,5 +24,6 @@ export const App = () => (
     <p className="read-the-docs">
       Click on the Vite and React logos to learn more
     </p>
+    <div style={{ height: "1000px" }}>Tall div</div>
   </div>
 );

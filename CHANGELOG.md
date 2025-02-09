@@ -1,5 +1,11 @@
 # Changelog
 
+## 3.1.1
+
+- Correctly display component using forwardRef
+- Fix menu position when div is taller than viewport
+- Use dynamic z-index to always be on top of the targeted element (like MUI dialog) (fixes #9)
+
 ## 3.1.0
 
 - Experimental support for React 19. `_debugSource` [was removed](https://github.com/facebook/react/pull/28265) in React 19. The PR says that tools should lazily generate component stack strace, but I couldn't find a way to use the React devtools globals to generate one for a given Fiber node. I've aksed some React team members about insights on how to make this works, but for now I decided to patch the jsx dev runtime (when serving it) to reinject into Fiber node the source prop added by JSX transform.

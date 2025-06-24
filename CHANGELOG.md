@@ -1,9 +1,13 @@
 # Changelog
 
+## 4.0.0
+
+- Align with Vite 7: ESM only, node 20.19+
+
 ## 3.1.1
 
 - Correctly display component using forwardRef
-- Fix menu position when div is taller than viewport
+- Fix menu position when the target is taller than viewport
 - Use dynamic z-index to always be on top of the targeted element (like MUI dialog) (fixes #9)
 
 ## 3.1.0

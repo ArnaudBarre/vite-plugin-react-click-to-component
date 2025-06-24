@@ -1,13 +1,13 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
-import { reactClickToComponent } from "../dist/index.mjs";
+import { reactClickToComponent } from "../dist/index.js";
 import restart from "vite-plugin-restart";
 
 export default defineConfig({
   plugins: [
     react(),
     reactClickToComponent(),
-    restart({ restart: ["../dist/client.js", "../dist/index.mjs"] }),
+    restart({ restart: ["../dist/client.js", "../dist/index.js"] }),
   ],
   server: { open: true },
 });

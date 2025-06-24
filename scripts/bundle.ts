@@ -10,7 +10,7 @@ const dev = process.argv.includes("--dev");
 rmSync("dist", { force: true, recursive: true });
 
 const buildOrWatch = async (options: BuildOptions) => {
-  if (!dev) return build(options);
+  if (!dev) return await build(options);
   const ctx = await context(options);
   await ctx.watch();
   await ctx.rebuild();
@@ -19,10 +19,10 @@ const buildOrWatch = async (options: BuildOptions) => {
 await Promise.all([
   buildOrWatch({
     bundle: true,
-    entryPoints: ["src/index.mts"],
-    outfile: "dist/index.mjs",
+    entryPoints: ["src/index.ts"],
+    outfile: "dist/index.js",
     platform: "node",
-    target: "node18",
+    target: "node20",
     format: "esm",
     legalComments: "inline",
     external: Object.keys(packageJSON.peerDependencies),
@@ -33,14 +33,14 @@ await Promise.all([
     outfile: "dist/client.js",
     platform: "browser",
     format: "esm",
-    target: "safari14",
+    target: "safari16",
     legalComments: "inline",
   }),
 ]).then(() => {
-  execSync("cp LICENSE README.md src/index.cjs dist/");
+  execSync("cp LICENSE README.md dist/");
 
   writeFileSync(
-    "dist/index.d.mts",
+    "dist/index.d.ts",
     `import { PluginOption } from "vite";
 export declare const reactClickToComponent: () => PluginOption;
 `,
@@ -58,15 +58,8 @@ export declare const reactClickToComponent: () => PluginOption;
         license: packageJSON.license,
         repository: "github:ArnaudBarre/vite-plugin-react-click-to-component",
         type: "module",
-        main: "index.cjs",
-        types: "index.d.mts",
-        module: "index.mjs",
         exports: {
-          ".": {
-            types: "./index.d.mts",
-            require: "./index.cjs",
-            import: "./index.mjs",
-          },
+          ".": "./index.js",
         },
         keywords: [
           "vite",

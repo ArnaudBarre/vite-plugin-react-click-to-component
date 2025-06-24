@@ -1,34 +1,37 @@
 {
   "name": "vite-plugin-react-click-to-component",
   "type": "module",
-  "version": "3.1.1",
+  "version": "4.0.0",
+  "private": true,
   "license": "MIT",
   "scripts": {
     "postinstall": "cd playground && bun i",
     "dev": "scripts/bundle.ts --dev",
     "build": "scripts/bundle.ts",
-    "tsc": "tsc",
+    "tsc": "tsl",
     "lint": "bun lint-ci --fix --cache",
     "lint-ci": "eslint --max-warnings 0",
     "prettier": "bun prettier-ci --write",
     "prettier-ci": "prettier --ignore-path=.gitignore --check '**/*.{ts,tsx,html,css,json,md,yml}'",
-    "ci": "tsc && bun run build && bun lint-ci && bun prettier-ci && cd playground && tsc && bun lint-ci && cd ../dist && bun publint"
+    "ci": "tsl && bun run build && bun lint-ci && bun prettier-ci && cd playground && tsc && bun lint-ci && cd ../dist && bun publint"
   },
   "prettier": {
     "trailingComma": "all"
   },
   "peerDependencies": {
     "react": "^18.3.1 || ^19.0.0",
-    "vite": "^4 || ^5 || ^6"
+    "vite": "^7"
   },
   "devDependencies": {
-    "@arnaud-barre/eslint-config": "^5.2.0",
-    "@arnaud-barre/tnode": "^0.24.0",
+    "@arnaud-barre/eslint-config": "6.0.0",
+    "@arnaud-barre/tsl-config": "^0.1.0",
+    "@arnaud-barre/tnode": "^0.25.0",
     "@types/node": "^20.17.8",
-    "eslint": "^9.15.0",
+    "eslint": "^9.29.0",
     "prettier": "3.0.3",
-    "publint": "^0.2.12",
-    "typescript": "~5.7.2",
-    "vite": "^6.0.0"
+    "publint": "^0.3.12",
+    "tsl": "^1.0.17",
+    "typescript": "~5.8.3",
+    "vite": "^7.0.0"
   }
 }

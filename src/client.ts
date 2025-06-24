@@ -208,6 +208,7 @@ const getReactInstanceForElement = (element: Element): Fiber | undefined => {
     for (const renderer of renderers.values()) {
       try {
         const fiber = renderer.findFiberByHostInstance(element);
+        // tsl-ignore core/strictBooleanExpressions
         if (fiber) return fiber;
       } catch {
         // If React is mid-render, references to previous nodes may disappear during the click events

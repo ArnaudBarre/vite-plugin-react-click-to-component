@@ -1,5 +1,5 @@
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc";
+import react from "@vitejs/plugin-react";
 import { reactClickToComponent } from "../dist/index.js";
 import restart from "vite-plugin-restart";
 

@@ -1,4 +1,4 @@
 import baseConfig from "@arnaud-barre/eslint-config";
-import tseslint from "typescript-eslint";
+import { defineConfig } from "eslint/config";
 
-export default tseslint.config(...baseConfig);
+export default defineConfig(...baseConfig);

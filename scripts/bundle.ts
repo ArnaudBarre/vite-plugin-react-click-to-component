@@ -1,9 +1,9 @@
-#!/usr/bin/env tnode
+#!/usr/bin/env node
 import { execSync } from "node:child_process";
 import { rmSync, writeFileSync } from "node:fs";
 import { build, type BuildOptions, context } from "esbuild";
 
-import packageJSON from "../package.json";
+import packageJSON from "../package.json" with { type: "json" };
 
 const dev = process.argv.includes("--dev");
 

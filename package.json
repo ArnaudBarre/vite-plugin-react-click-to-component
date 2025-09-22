@@ -9,29 +9,27 @@
     "dev": "scripts/bundle.ts --dev",
     "build": "scripts/bundle.ts",
     "tsc": "tsl",
-    "lint": "bun lint-ci --fix --cache",
-    "lint-ci": "eslint --max-warnings 0",
+    "lint": "eslint --max-warnings 0",
     "prettier": "bun prettier-ci --write",
     "prettier-ci": "prettier --ignore-path=.gitignore --check '**/*.{ts,tsx,html,css,json,md,yml}'",
-    "ci": "tsl && bun run build && bun lint-ci && bun prettier-ci && cd playground && tsc && bun lint-ci && cd ../dist && bun publint"
+    "ci": "tsl && bun run build && bun lint && bun prettier-ci && cd playground && tsc && bun lint && cd ../dist && bun publint"
   },
   "prettier": {
-    "trailingComma": "all"
+    "experimentalOperatorPosition": "start"
   },
   "peerDependencies": {
     "react": "^18.3.1 || ^19.0.0",
     "vite": "^7"
   },
   "devDependencies": {
-    "@arnaud-barre/eslint-config": "6.0.0",
-    "@arnaud-barre/tsl-config": "^0.1.0",
-    "@arnaud-barre/tnode": "^0.25.0",
-    "@types/node": "^20.17.8",
-    "eslint": "^9.29.0",
-    "prettier": "3.0.3",
-    "publint": "^0.3.12",
-    "tsl": "^1.0.17",
-    "typescript": "~5.8.3",
+    "@arnaud-barre/eslint-config": "^6.1.2",
+    "@arnaud-barre/tsl-config": "^0.1.1",
+    "@types/node": "^22.17.8",
+    "eslint": "^9.36.0",
+    "prettier": "^3.6.2",
+    "publint": "^0.3.13",
+    "tsl": "^1.0.25",
+    "typescript": "~5.9.2",
     "vite": "^7.0.0"
   }
 }

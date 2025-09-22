@@ -164,10 +164,10 @@ const getLayersForElement = (element: Element) => {
       const name =
         typeof instance.type === "string"
           ? instance.type
-          : instance.type.displayName ??
-            instance.type.name ??
-            instance.type.render?.name ??
-            "undefined";
+          : (instance.type.displayName
+            ?? instance.type.name
+            ?? instance.type.render?.name
+            ?? "undefined");
       layers.push({ name, path });
     }
     instance = instance._debugOwner;

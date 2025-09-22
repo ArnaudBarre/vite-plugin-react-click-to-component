@@ -14,7 +14,7 @@ In your Vite config:
 
 ```ts
 import { defineConfig } from "vite";
-import react from "@vitejs/plugin-react-swc"; // or @vitejs/plugin-react
+import react from "@vitejs/plugin-react"; // or @vitejs/plugin-react-swc
 import { reactClickToComponent } from "vite-plugin-react-click-to-component";
 
 export default defineConfig({

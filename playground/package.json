@@ -5,15 +5,15 @@
   "scripts": {
     "postinstall": "rm -rf node_modules/vite",
     "dev": "vite",
-    "lint-ci": "eslint --max-warnings 0"
+    "lint": "eslint --max-warnings 0"
   },
   "dependencies": {
     "react": "^19.0.0",
-    "react-dom": "^19.0.0",
-    "vite-plugin-restart": "^0.4.2"
+    "react-dom": "^19.0.0"
   },
   "devDependencies": {
     "@types/react-dom": "^19.0.2",
-    "@vitejs/plugin-react-swc": "^3.7.2"
+    "@vitejs/plugin-react": "^5.0.3",
+    "vite-plugin-restart": "^1.0.0"
   }
 }

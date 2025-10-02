@@ -37,6 +37,7 @@ style.innerHTML = `[data-click-to-component-target] {
 document.head.appendChild(style);
 
 const root = "__ROOT__";
+const base = "__BASE__";
 let currentTarget: HTMLElement | undefined;
 let hasMenu = false;
 const menuElement = document.createElement("div");
@@ -123,7 +124,9 @@ window.addEventListener("contextmenu", (event) => {
     spanR.textContent = layer.path.replace(`${root}/`, "");
     item.appendChild(spanR);
     item.addEventListener("click", () => {
-      void fetch(`/__open-in-editor?file=${encodeURIComponent(layer.path)}`);
+      void fetch(
+        `${base}__open-in-editor?file=${encodeURIComponent(layer.path)}`,
+      );
       cleanUp();
     });
     menuElement.appendChild(item);

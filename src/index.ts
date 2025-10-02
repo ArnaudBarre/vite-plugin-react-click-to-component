@@ -3,21 +3,22 @@ import { join } from "node:path";
 import type { PluginOption } from "vite";
 
 let root = "";
+let base = "";
 
 export const reactClickToComponent = (): PluginOption => ({
   name: "react-click-to-component",
   apply: "serve",
   configResolved(config) {
     root = config.root;
+    base = config.base;
   },
   transformIndexHtml: () => [
     {
       tag: "script",
       attrs: { type: "module" },
-      children: readFileSync(
-        join(import.meta.dirname, "client.js"),
-        "utf-8",
-      ).replace("__ROOT__", root),
+      children: readFileSync(join(import.meta.dirname, "client.js"), "utf-8")
+        .replace("__ROOT__", root)
+        .replace("__BASE__", base),
     },
   ],
   transform(code, id) {

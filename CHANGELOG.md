@@ -1,5 +1,9 @@
 # Changelog
 
+## Unreleased
+
+- Add support for Vite base path
+
 ## 4.0.0
 
 - Align with Vite 7: ESM only, node 20.19+

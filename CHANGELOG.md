@@ -1,6 +1,6 @@
 # Changelog
 
-## Unreleased
+## 4.1.0
 
 - Add support for React 19.2
 - Add support for Vite base path

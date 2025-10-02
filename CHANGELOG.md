@@ -2,6 +2,7 @@
 
 ## Unreleased
 
+- Add support for React 19.2
 - Add support for Vite base path
 - Use filter hook for better performance in rolldown-vite
 

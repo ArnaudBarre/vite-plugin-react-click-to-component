@@ -8,11 +8,11 @@
     "lint": "eslint --max-warnings 0"
   },
   "dependencies": {
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
+    "react": "^19.2.0",
+    "react-dom": "^19.2.0"
   },
   "devDependencies": {
-    "@types/react-dom": "^19.0.2",
+    "@types/react-dom": "^19.2.0",
     "@vitejs/plugin-react": "^5.0.3",
     "vite-plugin-restart": "^1.0.0"
   }

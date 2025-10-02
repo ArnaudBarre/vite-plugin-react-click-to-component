@@ -3,6 +3,7 @@
 ## Unreleased
 
 - Add support for Vite base path
+- Use filter hook for better performance in rolldown-vite
 
 ## 4.0.0
 

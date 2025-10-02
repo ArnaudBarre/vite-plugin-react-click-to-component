@@ -21,15 +21,19 @@ export const reactClickToComponent = (): PluginOption => ({
         .replace("__BASE__", base),
     },
   ],
-  transform(code, id) {
-    if (!id.includes("jsx-dev-runtime.js")) return;
-    if (code.includes("_source")) return;
-    const defineIndex = code.indexOf('"_debugInfo"');
-    if (defineIndex === -1) return;
-    const valueIndex = code.indexOf("value: null", defineIndex);
-    if (valueIndex === -1) return;
-    return (
-      code.slice(0, valueIndex) + "value: source" + code.slice(valueIndex + 11)
-    );
+  transform: {
+    filter: { id: /jsx-dev-runtime\.js/u },
+    handler(code) {
+      if (code.includes("_source")) return;
+      const defineIndex = code.indexOf('"_debugInfo"');
+      if (defineIndex === -1) return;
+      const valueIndex = code.indexOf("value: null", defineIndex);
+      if (valueIndex === -1) return;
+      return (
+        code.slice(0, valueIndex)
+        + "value: source"
+        + code.slice(valueIndex + 11)
+      );
+    },
   },
 });

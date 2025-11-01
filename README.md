@@ -22,6 +22,17 @@ export default defineConfig({
 });
 ```
 
+### For frameworks not using transformIndexHtml hook (like React Router 7 framework mode)
+
+> [!NOTE]
+> If you're unsure, try first without adding this import
+
+Add this somewhere in your entry file (like `src/main.tsx`):
+
+```ts
+import "vite-plugin-react-click-to-component/client";
+```
+
 ## Inspiration
 
 This plugin is a light version of [ericclemmons/click-to-component](https://github.com/ericclemmons/click-to-component) that uses Vite's launch editor middleware to open the source code in your currently running editor. This also benefits from Vite's transformIndexHtml hook so that you don't need to modify your source code.

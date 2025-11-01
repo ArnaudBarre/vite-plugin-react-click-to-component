@@ -45,6 +45,7 @@ await Promise.all([
 export declare const reactClickToComponent: () => PluginOption;
 `,
   );
+  writeFileSync("dist/client.d.ts", "export {};\n");
 
   writeFileSync(
     "dist/package.json",
@@ -60,6 +61,7 @@ export declare const reactClickToComponent: () => PluginOption;
         type: "module",
         exports: {
           ".": "./index.js",
+          "./client": { types: "./client.d.ts" },
         },
         keywords: [
           "vite",

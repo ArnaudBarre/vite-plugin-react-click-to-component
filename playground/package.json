@@ -5,6 +5,7 @@
   "scripts": {
     "postinstall": "rm -rf node_modules/vite",
     "dev": "vite",
+    "build": "vite build",
     "lint": "eslint --max-warnings 0"
   },
   "dependencies": {

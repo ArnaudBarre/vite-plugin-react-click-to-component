@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.1
+
+- Add vite@8 to peer dependency ranges
+
 ## 4.2.0
 
 - Add support for frameworks not using transformIndexHtml hook like React Router 7 (fixes #13)

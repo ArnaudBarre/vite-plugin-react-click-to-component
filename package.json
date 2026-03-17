@@ -1,7 +1,7 @@
 {
   "name": "vite-plugin-react-click-to-component",
   "type": "module",
-  "version": "4.2.0",
+  "version": "4.2.1",
   "private": true,
   "license": "MIT",
   "scripts": {
@@ -19,7 +19,7 @@
   },
   "peerDependencies": {
     "react": "^18.3.1 || ^19.0.0",
-    "vite": "^7"
+    "vite": "^7 || ^8"
   },
   "devDependencies": {
     "@arnaud-barre/eslint-config": "^6.1.2",

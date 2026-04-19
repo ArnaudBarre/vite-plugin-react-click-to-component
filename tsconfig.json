@@ -5,7 +5,7 @@
     "target": "ES2022",
     "module": "ESNext",
     "moduleDetection": "force",
-    "lib": ["ES2023", "DOM", "DOM.Iterable"],
+    "lib": ["ES2023", "DOM"],
     "types": ["node", "tsl/patches"],
     "skipLibCheck": true,
 
@@ -17,10 +17,8 @@
     "noEmit": true,
 
     /* Linting */
-    "strict": true,
     "noFallthroughCasesInSwitch": true,
     "useUnknownInCatchVariables": true,
-    "noUncheckedSideEffectImports": true,
     "noPropertyAccessFromIndexSignature": true,
 
     "plugins": [{ "name": "tsl/plugin" }]

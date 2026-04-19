@@ -14,7 +14,7 @@
   },
   "devDependencies": {
     "@types/react-dom": "^19.2.0",
-    "@vitejs/plugin-react": "^5.0.3",
-    "vite-plugin-restart": "^1.0.0"
+    "@vitejs/plugin-react": "^6.0.1",
+    "vite-plugin-restart": "^2.0.0"
   }
 }

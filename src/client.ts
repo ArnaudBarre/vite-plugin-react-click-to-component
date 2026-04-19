@@ -111,9 +111,8 @@ window.addEventListener("contextmenu", (event) => {
   while (menuElement.firstChild) {
     menuElement.removeChild(menuElement.firstChild);
   }
-  menuElement.style.flexDirection = menuElement.style.top
-    ? "column"
-    : "column-reverse";
+  menuElement.style.flexDirection =
+    menuElement.style.top !== "" ? "column" : "column-reverse";
   for (const layer of layers) {
     const item = document.createElement("div");
     item.className = "click-to-component-menu-item";

@@ -132,6 +132,11 @@ window.addEventListener("contextmenu", (event) => {
   }
   if (!hasMenu) {
     document.body.appendChild(menuElement);
+    if (document.body.style.pointerEvents === "none") {
+      // Allow working with Radix UI Dialogs https://github.com/ArnaudBarre/vite-plugin-react-click-to-component/issues/17
+      document.body.style.pointerEvents = "auto";
+      document.body.dataset["clickToComponentUnlocked"] = "true";
+    }
     hasMenu = true;
   }
 });

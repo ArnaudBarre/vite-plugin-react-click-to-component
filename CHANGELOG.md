@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.2
+
+- Fix usage inside Radix UI dialog (fixes [#17](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component/issues/17))
+
 ## 4.2.1
 
 - Add vite@8 to peer dependency ranges

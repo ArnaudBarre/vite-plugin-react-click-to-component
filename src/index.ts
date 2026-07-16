@@ -53,16 +53,18 @@ export const reactClickToComponent = (): PluginOption => {
     },
 
     // Default: Inject client via transformIndexHtml (no source code modification required)
-    transformIndexHtml() {
-      if (!isServe) return;
-      return [
-        {
-          tag: "script",
-          attrs: { type: "module" },
-          children:
-            'import "/@id/__x00__vite-plugin-react-click-to-component/client";',
-        },
-      ];
+    transformIndexHtml: {
+      order: "pre",
+      handler() {
+        if (!isServe) return;
+        return [
+          {
+            tag: "script",
+            attrs: { type: "module" },
+            children: 'import "vite-plugin-react-click-to-component/client";',
+          },
+        ];
+      },
     },
 
     // Inject with `import "vite-plugin-react-click-to-component/client"` for SSR frameworks

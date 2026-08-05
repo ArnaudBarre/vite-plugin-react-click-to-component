@@ -10,4 +10,5 @@ export default defineConfig({
     restart({ restart: ["../dist/client.js", "../dist/index.js"] }),
   ],
   server: { open: true },
+  // experimental: { bundledDev: true },
 });

@@ -17,8 +17,10 @@ export const reactClickToComponent = (): PluginOption => {
     },
 
     // Fix React 19 not injecting source in jsxDEV
+    // In bundledDev, the plugin see the raw source code (jsx-dev-runtime.development.js)
+    // In classic unbundled mode, the plugin see the dependency-bundled source code (jsx-dev-runtime.js)
     transform: {
-      filter: { id: /jsx-dev-runtime\.js/u },
+      filter: { id: /jsx-dev-runtime(\.development)?\.js/u },
       handler(code) {
         if (!isServe) return;
         if (code.includes("_source")) return; // React <19, no hack needed
@@ -67,7 +69,6 @@ export const reactClickToComponent = (): PluginOption => {
       },
     },
 
-    // Inject with `import "vite-plugin-react-click-to-component/client"` for SSR frameworks
     resolveId: {
       order: "pre",
       filter: { id: /^vite-plugin-react-click-to-component\/client$/u },

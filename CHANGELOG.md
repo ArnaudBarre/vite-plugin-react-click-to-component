@@ -1,5 +1,9 @@
 # Changelog
 
+## 4.2.3
+
+- Support Vite 8.1 `bundledDev` mode ([#18](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component/pull/18))
+
 ## 4.2.2
 
 - Fix usage inside Radix UI dialog (fixes [#17](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component/issues/17))

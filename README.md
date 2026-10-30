@@ -33,6 +33,16 @@ Add this somewhere in your entry file (like `src/main.tsx`):
 import "vite-plugin-react-click-to-component/client";
 ```
 
+### Custom UI
+
+To build your own menu, disable the default client:
+
+```ts
+reactClickToComponent({ injectClient: false });
+```
+
+The plugin still adds the source location of React 19 elements. Read it from the fiber with `fiber._debugSource ?? fiber._debugInfo` (`fileName`, `lineNumber`, `columnNumber`). To open a file, request `/__open-in-editor?file=<path>:<line>:<column>` from the Vite dev server.
+
 ## Inspiration
 
 This plugin is a light version of [ericclemmons/click-to-component](https://github.com/ericclemmons/click-to-component) that uses Vite's launch editor middleware to open the source code in your currently running editor. This also benefits from Vite's transformIndexHtml hook so that you don't need to modify your source code.

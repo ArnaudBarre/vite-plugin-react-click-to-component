@@ -190,7 +190,9 @@ const getPath = (fiber: Fiber) => {
     return;
   }
   const { columnNumber = 1, fileName, lineNumber = 1 } = source;
-  return `${fileName}:${lineNumber}:${columnNumber}`;
+  // Remove module queries added by plugins (e.g. TanStack Router `?tsr-split=component`)
+  const filePath = fileName.replace(/\?.*$/u, "");
+  return `${filePath}:${lineNumber}:${columnNumber}`;
 };
 
 type Source = {

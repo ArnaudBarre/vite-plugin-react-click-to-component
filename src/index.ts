@@ -2,7 +2,19 @@ import { readFileSync } from "node:fs";
 import { join } from "node:path";
 import type { PluginOption } from "vite";
 
-export const reactClickToComponent = (): PluginOption => {
+export type ReactClickToComponentOptions = {
+  /**
+   * Inject the default client (menu and editor opening) in the HTML.
+   * Set to `false` to use your own UI. The plugin still makes React 19 keep
+   * the source location of elements.
+   * @default true
+   */
+  injectClient?: boolean;
+};
+
+export const reactClickToComponent = ({
+  injectClient = true,
+}: ReactClickToComponentOptions = {}): PluginOption => {
   let root = "";
   let base = "";
   let isServe = false;
@@ -58,7 +70,7 @@ export const reactClickToComponent = (): PluginOption => {
     transformIndexHtml: {
       order: "pre",
       handler() {
-        if (!isServe) return;
+        if (!isServe || !injectClient) return;
         return [
           {
             tag: "script",

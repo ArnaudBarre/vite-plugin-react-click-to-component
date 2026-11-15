@@ -205,8 +205,7 @@ type Fiber = {
   _debugInfo?: Source; // Injected by React jsxDev patch for React 19
   _debugOwner?: Fiber;
   type:
-    | string
-    | { displayName?: string; name?: string; render?: () => unknown };
+    string | { displayName?: string; name?: string; render?: () => unknown };
 };
 
 const getReactInstanceForElement = (element: Element): Fiber | undefined => {

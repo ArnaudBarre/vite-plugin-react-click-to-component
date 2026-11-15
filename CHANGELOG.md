@@ -1,5 +1,10 @@
 # Changelog
 
+## 4.3.0
+
+- Add injectClient option to use a custom UI ([#20](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component/pull/20))
+- Remove module query from source path before opening editor ([#19](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component/pull/19))
+
 ## 4.2.3
 
 - Support Vite 8.1 `bundledDev` mode ([#18](https://github.com/ArnaudBarre/vite-plugin-react-click-to-component/pull/18))
